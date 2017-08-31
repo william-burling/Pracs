@@ -1,23 +1,13 @@
+song_list_file = open("songs.csv")
+song_list_data = song_list_file.readlines()
 
-# 1. Numbers
-numbers = []
-for i in range(5):
-    number = int(input("Number: "))
-    numbers.append(number)
+subjects = song_list_data[0].strip().split(",")
+song_list_values = []
+for song_list_line in song_list_data[1:]:
+    song_list_strings = song_list_line.strip().split(",")
+    song_list_numbers = [int(value) for value in song_list_strings]
+    song_list_values.append(song_list_numbers)
+song_list_file.close()
+song_list_by_subject = reorganise_song_list_by_subject(song_list_values)
+display_subject_details(songs_list_by_subject, subjects)
 
-print("The first number is", numbers[0])
-print("The last number is", numbers[-1])
-print("The smallest number is", min(numbers))
-print("The largest number is", max(numbers))
-print("The average of the numbers is", sum(numbers) / len(numbers))
-
-# 2. Security
-usernames = ['jimbo', 'giltson98', 'derekf', 'WhatSup', 'NicolEye',
-             'swei45', 'BaseInterpreterInterface', 'BaseStdIn', 'Command',
-             'ExecState', 'InteractiveConsole', 'InterpreterInterface',
-             'StartServer', 'bob']
-username = input("Enter username:")
-if username in usernames:
-    print("Access granted")
-else:
-    print("Access denied")
